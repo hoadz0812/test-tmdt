@@ -52,13 +52,23 @@ Product.delete = (id, result) => {
     })
 }
 
-Product.product = (data, result) => {
+Product.update = (data, result) => {
     db.query('update product set idCategory = ?, nameProduct = ?, price = ?, description = ?, type = ?, status = ?, total = ?, img = ? where idProduct = ?',
     [data.idCategory, data.nameProduct, data.price, data.description , data.type, data.status, data.total, data.img, data.idProduct], (err, product) => {
         if(err){
             result(err)
         }else{
             result(data)
+        }
+    })
+}
+
+Product.search = (id, result) => {
+    db.query(`SELECT * FROM product WHERE nameProduct like N'%${id}%'`, (err, product) => {
+        if(err){
+            result(err)
+        }else{
+            result(product)
         }
     })
 }

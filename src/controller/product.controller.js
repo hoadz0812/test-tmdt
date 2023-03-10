@@ -29,3 +29,9 @@ exports.update = (req, res) => {
         res.send(result)
     })
 }
+
+exports.search = (req, res) => {
+    Product.search(req.params.id, result => {
+        res.send(result)
+    })
+}
